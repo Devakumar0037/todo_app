@@ -44,9 +44,10 @@ def load_tasks():
             for line in file:
                 task = line.strip()
                 if task.startswith("[COMPLETED]"):
-                    task = task[12:]
+                    task = task[11:]  # Remove the "[COMPLETED]" prefix
+                    index = listbox.size()  # Get current size before insertion
                     listbox.insert(tk.END, task)
-                    listbox.itemconfig(tk.END - 1, bg="light green")
+                    listbox.itemconfig(index, bg="light green")  # Use valid index
                 else:
                     listbox.insert(tk.END, task)
     except FileNotFoundError:
